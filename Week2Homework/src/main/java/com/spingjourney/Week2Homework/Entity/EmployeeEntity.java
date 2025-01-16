@@ -27,7 +27,7 @@ public class EmployeeEntity {
     private float salary;
 
     @JsonProperty("isActive")
-    private boolean isActive;
+    private Boolean isActive;
 
 
 }

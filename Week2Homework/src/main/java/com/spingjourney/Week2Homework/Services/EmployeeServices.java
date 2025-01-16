@@ -4,10 +4,13 @@ import com.spingjourney.Week2Homework.DTO.EmployeeDTO;
 import com.spingjourney.Week2Homework.Entity.EmployeeEntity;
 import com.spingjourney.Week2Homework.Repositories.EmployeeRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,11 +49,14 @@ public class EmployeeServices {
                 .collect(Collectors.toList());
     }
 
-    public boolean deleteEmployee(int empId) {
-        modelMapper.map(EmployeeDTO.class,EmployeeEntity.class);
-        isExistById(empId);
+    public ResponseEntity<EmployeeDTO> deleteEmployee(int empId) {
+        Optional<EmployeeEntity> employeeEntity = employeeRepository.findById(empId);
+        if (employeeEntity.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        EmployeeDTO employeeDTO = modelMapper.map(employeeEntity.get(), EmployeeDTO.class);
         employeeRepository.deleteById(empId);
-        modelMapper.map(empId,EmployeeDTO.class);
-        return true;
+        return ResponseEntity.ok(employeeDTO);
     }
+
 }

@@ -29,8 +29,8 @@ public class EmployeeDTO {
     @Digits(integer = 6,fraction = 2,message = "The Salary is less than 6 digit")
     private float salary;
 
-    @JsonProperty("isActive")
     @AssertTrue(message = "isActive field always be true")
-    private boolean isActive;
+    @JsonProperty("isActive")
+    private Boolean isActive;
 
 }
