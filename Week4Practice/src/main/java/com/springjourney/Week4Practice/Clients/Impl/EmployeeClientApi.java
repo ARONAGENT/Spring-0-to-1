@@ -73,7 +73,7 @@ public class EmployeeClientApi implements EmployeeClient {
                         log.error(new String(res.getBody().readAllBytes()));
                     })
                     .body(new ParameterizedTypeReference<>() {});
-            log.info("Successfully Attempting method deleteEmployee");
+            log.info("Successfully Delete Employee with id : {} ",empId);
             return response.getData();
         } catch (Exception e) {
             log.error("Error occurred in deleteEmployee");

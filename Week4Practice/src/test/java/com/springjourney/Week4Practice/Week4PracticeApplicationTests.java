@@ -24,20 +24,19 @@ class Week4PracticeApplicationTests {
 		EmployeeDTO employeeDTO=
 				new EmployeeDTO
 						(null,
-								"mukesh"
-								,"Mukesh21@gmail.com"
-								,"physics"
-								,93000
+								"Tony Stark"
+								,"Tony3000@gmail.com"
+								,"Nuclear Power"
+								,123456
 								,true
 						);
 		employeeClient.addEmployee(employeeDTO);
 		System.out.println(employeeDTO);
 	}
-
 	@Test
 	void deleteEmployee(){
 		EmployeeDTO employeeDTO=
-				employeeClient.deleteEmployee(1103);
+				employeeClient.deleteEmployee(1102);
 		System.out.println(employeeDTO);
 	}
 
